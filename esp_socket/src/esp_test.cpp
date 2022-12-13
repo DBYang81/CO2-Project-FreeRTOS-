@@ -163,14 +163,14 @@ static void vC02Detected(void* pvParameters) {
 	node3.begin(9600); // all nodes must operate at the same speed!
 	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
 	ModbusRegister CO2(&node3, 256, true);
-	Data sensorValue;
+	Data CO2Value;
 	for (;; )
 	{
 		vTaskDelayUntil(pdMS_TO_TICKS(100));
-		sensorValue = {
+		CO2Value = {
 			   {CO2.read(),CO2Sensor }
 		};
-		xStatus = xQueueSendToBack(sensorQueue, sensorValue, xTicksToWait);
+		xStatus = xQueueSendToBack(sensorQueue, CO2Value, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
 			vPrintString("Temperature sensor could not send to the queue.\r\n");
