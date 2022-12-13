@@ -31,12 +31,12 @@ typedef enum {
 }Sensors;
 
 typedef struct {
-	uin16_t sensorValue;
+	int sensorValue;
 	Sensors sensor;
 }Data;
 
 static QueueHandle_t sensorQueue = NULL, ISRQueue = NULL;
-static QueueSetHandle_t xQueueSet = NULL;
+static QueueSetHandle_t xQueueSet;
 QueueHandle_t xSemaphore;
 
 // TODO: insert other definitions and declarations here
@@ -112,10 +112,10 @@ void task1(void* params)
 
 /* Temp&humidity sensor reading by modus - high priority */
 static void vTempHumidity(void* pvParameters) {
-
+	TickType_t xLastWakeTime;
 	BaseType_t xStatus;
 	const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
-
+	xLastWakeTime = xTaskGetTickCount();
 	//Temperature sensor
 	ModbusMaster node3(241); // Create modbus object that connects to slave id 241 (HMP60)
 	node3.begin(9600); // all nodes must operate at the same speed!
@@ -123,31 +123,28 @@ static void vTempHumidity(void* pvParameters) {
 	ModbusRegister TE(&node3, 257, true);
 
 	//Humidity sensor
-	ModbusMaster node3(241); // Create modbus object that connects to slave id 241 (HMP60)
-	node3.begin(9600); // all nodes must operate at the same speed!
-	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
 	ModbusRegister RH(&node3, 256, true);
 
 	//prepare for sending sensor values
-	Data sensorValues[2];
+	//Data sensorValues [2];
 
 	//send values
 	for (;; )
 	{
-		vTaskDelayUntil(pdMS_TO_TICKS(100));
-		sensorValues = {
+		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
+		Data sensorValues[2] = {
 				{TE.read() / 10,temperatureSensor },
 				{RH.read() / 10,humiditySensor    }
 		};
-		xStatus = xQueueSendToBack(sensorQueue, sensorValues[1], xTicksToWait);
+		xStatus = xQueueSendToBack(sensorQueue, &sensorValues[1], xTicksToWait);
 		if (xStatus != pdPASS)
 		{
-			vPrintString("Temperature sensor could not send to the queue.\r\n");
+			printf("Temperature sensor could not send to the queue.\r\n");
 		}
-		xStatus = xQueueSendToBack(sensorQueue, sensorValues[2], xTicksToWait);
+		xStatus = xQueueSendToBack(sensorQueue, &sensorValues[2], xTicksToWait);
 		if (xStatus != pdPASS)
 		{
-			vPrintString("Humidity sensor could not send to the queue.\r\n");
+			printf("Humidity sensor could not send to the queue.\r\n");
 		}
 
 	}
@@ -155,25 +152,23 @@ static void vTempHumidity(void* pvParameters) {
 
 /* C02 sensor reading by modus controlled by relay - high priority*/
 static void vC02Detected(void* pvParameters) {
-
+	TickType_t xLastWakeTime;
 	BaseType_t xStatus;
 	const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
+	xLastWakeTime = xTaskGetTickCount();
+	ModbusMaster node4(240);
+	node4.begin(9600); // all nodes must operate at the same speed!
+	node4.idle(idle_delay); // idle function is called while waiting for reply from slave
+	ModbusRegister CO2(&node4, 256, true);
 
-	ModbusMaster node3(240); // Create modbus object that connects to slave id 241 (HMP60)
-	node3.begin(9600); // all nodes must operate at the same speed!
-	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
-	ModbusRegister CO2(&node3, 256, true);
-	Data CO2Value;
 	for (;; )
 	{
-		vTaskDelayUntil(pdMS_TO_TICKS(100));
-		CO2Value = {
-			   {CO2.read(),CO2Sensor }
-		};
-		xStatus = xQueueSendToBack(sensorQueue, CO2Value, xTicksToWait);
+		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
+		Data CO2Value = { CO2.read(),CO2Sensor };
+		xStatus = xQueueSendToBack(sensorQueue, &CO2Value, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
-			vPrintString("Temperature sensor could not send to the queue.\r\n");
+			printf("Temperature sensor could not send to the queue.\r\n");
 		}
 	}
 }
@@ -214,7 +209,7 @@ int main(void) {
 	//Create queue for read sensor values
 	xQueueSet = xQueueCreateSet(COMBINE_LENGTH);
 	sensorQueue = xQueueCreate(QUEUE_LENGTH1, sizeof(Data));
-	ISRQueue = xQueueCreate(QUEUE_LENGTH12, sizeof(int));
+	ISRQueue = xQueueCreate(QUEUE_LENGTH2, sizeof(int));
 	xSemaphore = xSemaphoreCreateBinary();
 
 	xQueueAddToSet(sensorQueue, xQueueSet);
