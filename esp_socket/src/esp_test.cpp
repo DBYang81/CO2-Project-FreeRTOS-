@@ -47,40 +47,40 @@ SemaphoreHandle_t xMutex;
 
 //ISR for rotary encoder turn (siga only)
 extern "C" {
-void PIN_INT0_IRQHandler(void)
-{
-	portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
+	void PIN_INT0_IRQHandler(void)
+	{
+		portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
-	int inc = 1;
-	int dec = -inc;
+		int inc = 1;
+		int dec = -inc;
 
-	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(0));
+		Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(0));
 
-	if(Chip_GPIO_GetPinState(LPC_GPIO, 0, 6)) {
-		xQueueSendFromISR(ISRQueue, (void*) &inc, &xHigherPriorityTaskWoken);
+		if (Chip_GPIO_GetPinState(LPC_GPIO, 0, 6)) {
+			xQueueSendFromISR(ISRQueue, (void*)&inc, &xHigherPriorityTaskWoken);
+		}
+		else {
+			xQueueSendFromISR(ISRQueue, (void*)&dec, &xHigherPriorityTaskWoken);
+		}
+
+		portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
 	}
-	else {
-		xQueueSendFromISR(ISRQueue, (void*) &dec, &xHigherPriorityTaskWoken);
-	}
-
-	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
-}
 }
 
 //ISR for rotary encoder button
 extern "C" {
-void PIN_INT1_IRQHandler(void)
-{
-	portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
+	void PIN_INT1_IRQHandler(void)
+	{
+		portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
-	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
+		Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
 
-	int val = 0;
+		int val = 0;
 
-	xQueueSendFromISR(ISRQueue, (void*) &val, &xHigherPriorityTaskWoken);
+		xQueueSendFromISR(ISRQueue, (void*)&val, &xHigherPriorityTaskWoken);
 
-	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
-}
+		portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+	}
 }
 
 /* The following is required if runtime statistics are to be collected
@@ -170,19 +170,20 @@ static void vTempHumidity(void* pvParameters) {
 	{
 		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
 		//xSemaphoreTake(xMutex, portMAX_DELAY);
-		Data CO2Value = {CO2.read(),CO2Sensor };
-		Data sensorValues[2] = {
-				{TE.read() / 10,temperatureSensor },
-				{RH.read() / 10,humiditySensor    }
-		};
+		Data CO2Value = { CO2.read(),CO2Sensor };
+		vTaskDelay(50);
+		Data TEValue = { TE.read(),temperatureSensor };
+		vTaskDelay(50);
+		Data RHValue = { RH.read(),humiditySensor };
+		vTaskDelay(50);
 		//xSemaphoreGive(xMutex);
-		xStatus = xQueueSendToBack(sensorQueue, &sensorValues[1], xTicksToWait);
+		xStatus = xQueueSendToBack(sensorQueue, &TEValue, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
 			printf("Temperature sensor could not send to the queue.\r\n");
 		}
 
-		xStatus = xQueueSendToBack(sensorQueue, &sensorValues[2], xTicksToWait);
+		xStatus = xQueueSendToBack(sensorQueue, &RHValue, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
 			printf("Humidity sensor could not send to the queue.\r\n");
@@ -243,37 +244,43 @@ static void vLcdDisplay(void* pvParameters) {
 	Data sensorData;
 	QueueHandle_t xQueueThatContainsData;
 	int Co2cnter = 0;
+	char buffer[50];
+	while (1) {
+		xQueueThatContainsData = (QueueHandle_t)xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
 
-	while(1){
-		xQueueThatContainsData = (QueueHandle_t) xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
-
-		if(xQueueThatContainsData == sensorQueue){
+		if (xQueueThatContainsData == sensorQueue) {
 			xQueueReceive(xQueueThatContainsData, &sensorData, 0);
 			// set the cursor to column 0, line 1
 			// (note: line 1 is the second row, since counting begins with 0):
 
-			if(sensorData.sensor == temperatureSensor){
+			if (sensorData.sensor == temperatureSensor) {
 				lcd->setCursor(0, 0);
 				lcd->print("T: ");
 				lcd->setCursor(4, 0);
-				lcd->print(std::to_string(sensorData.sensorValue));
+				sprintf(buffer, "%d", sensorData.sensorValue);
+				lcd->print(buffer);
 
-			}else if(sensorData.sensor == humiditySensor){
+			}
+			else if (sensorData.sensor == humiditySensor) {
 				lcd->setCursor(8, 0);
 				lcd->print("H: ");
-				lcd->print(std::to_string(sensorData.sensorValue));
+				sprintf(buffer, "%d", sensorData.sensorValue);
+				lcd->print(buffer);
 
-			}else{
+			}
+			else {
 				lcd->setCursor(0, 1);
 				lcd->print("CO2: ");
 				lcd->setCursor(4, 1);
-				lcd->print(std::to_string(sensorData.sensorValue));
+				sprintf(buffer, "%d", sensorData.sensorValue);
+				lcd->print(buffer);
 			}
 		}
-		if(xQueueThatContainsData == ISRQueue){
-		   xQueueReceive(xQueueThatContainsData, &Co2cnter, 0);
-		   lcd->setCursor(10, 1);
-		   lcd->print(std::to_string(Co2cnter));
+		if (xQueueThatContainsData == ISRQueue) {
+			xQueueReceive(xQueueThatContainsData, &Co2cnter, 0);
+			lcd->setCursor(10, 1);
+			sprintf(buffer, "%d", Co2cnter);
+			lcd->print(buffer);
 		}
 	}
 	vTaskDelay(xBlockTime);
@@ -283,8 +290,8 @@ static void vLcdDisplay(void* pvParameters) {
 static void vUARTTask(void* pvParameters) {
 
 	Data sensorData;
-//	int count = 0;
-//	char str[60];
+	//	int count = 0;
+	//	char str[60];
 	char buff[100];
 
 	retarget_init();
@@ -292,17 +299,17 @@ static void vUARTTask(void* pvParameters) {
 
 	QueueHandle_t xQueueThatContainsData;
 
-	while(1){
+	while (1) {
 		//			int bytes = dbgu->read(str+count, 60-count);
 		//			if(bytes > 0){
 		//				count += bytes;
 		//				str[count] = '\0';
 		//				dbgu->write(str+count-bytes, bytes);
 
-		xQueueThatContainsData = (QueueHandle_t) xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
-		if(xQueueThatContainsData == sensorQueue){
+		xQueueThatContainsData = (QueueHandle_t)xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
+		if (xQueueThatContainsData == sensorQueue) {
 			xQueueReceive(xQueueThatContainsData, &sensorData, 0);
-			if(sensorData.sensor == temperatureSensor){
+			if (sensorData.sensor == temperatureSensor) {
 				snprintf(buff, 100, "Temp: %d \r\n", sensorData.sensorValue);
 				printf("%s", buff);
 			}
@@ -325,7 +332,6 @@ extern "C" {
 }
 
 int main(void) {
-
 #if defined (__USE_LPCOPEN)
 	// Read clock settings and update SystemCoreClock variable
 	SystemCoreClockUpdate();
@@ -358,7 +364,7 @@ int main(void) {
 	// The level must be equal or lower than the maximum priority specified in FreeRTOS config
 	// Note that in a Cortex-M3 a higher number indicates lower interrupt priority
 	//NVIC_SetPriority( RITIMER_IRQn, configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY + 1 );
-	
+
 	/* ISR SETUP START */
 	//rotary encoder pin setup
 	DigitalIoPin sw_a2(1, 8, DigitalIoPin::pullup, true); //button
@@ -416,7 +422,7 @@ int main(void) {
 //		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 2UL),
 //		(TaskHandle_t*)NULL);
 
-	vStartSimpleMQTTDemo();
+	//vStartSimpleMQTTDemo();
 
 	/* Start the scheduler */
 	vTaskStartScheduler();
