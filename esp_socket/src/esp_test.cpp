@@ -169,14 +169,14 @@ static void vSensorReadTask(void* pvParameters) {
 
 	for (;; )
 	{
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
+		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(10));
 		//xSemaphoreTake(xMutex, portMAX_DELAY);
 		Data CO2Value = { CO2.read(),CO2Sensor };
-		vTaskDelay(50);
-		Data TEValue = { TE.read(),temperatureSensor };
-		vTaskDelay(50);
-		Data RHValue = { RH.read(),humiditySensor };
-		vTaskDelay(50);
+		vTaskDelay(5);
+		Data TEValue = { TE.read() / 10, temperatureSensor };
+		vTaskDelay(5);
+		Data RHValue = { RH.read() / 10, humiditySensor };
+		vTaskDelay(5);
 		//xSemaphoreGive(xMutex);
 		xStatus = xQueueSendToBack(sensorQueue, &TEValue, xTicksToWait);
 		if (xStatus != pdPASS)
@@ -244,9 +244,26 @@ static void vLcdDisplay(void* pvParameters) {
 	const TickType_t xBlockTime = pdMS_TO_TICKS(100);
 	Data sensorData;
 	QueueHandle_t xQueueThatContainsData;
-	int Co2cnter = 0;
+
+	int isr_val;
+	bool edit_state = false;
+	int co2_target = 500;
+	int co2_level = co2_target;
+
+	int counter = 0;
 	char buffer[50];
 	while (1) {
+		counter++;
+		if(counter > 30){
+			lcd->clear();
+			counter = 0;
+		}
+
+		lcd->setCursor(14, 0);
+		DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
+		sprintf(buffer, "R%d", relay.read());
+		lcd->print(buffer);
+
 		xQueueThatContainsData = (QueueHandle_t)xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
 
 		if (xQueueThatContainsData == sensorQueue) {
@@ -256,32 +273,44 @@ static void vLcdDisplay(void* pvParameters) {
 
 			if (sensorData.sensor == temperatureSensor) {
 				lcd->setCursor(0, 0);
-				lcd->print("T: ");
-				lcd->setCursor(4, 0);
-				sprintf(buffer, "%d", sensorData.sensorValue);
+				sprintf(buffer, "T:%d C", sensorData.sensorValue);
 				lcd->print(buffer);
 
 			}
 			else if (sensorData.sensor == humiditySensor) {
-				lcd->setCursor(8, 0);
-				lcd->print("H: ");
-				sprintf(buffer, "%d", sensorData.sensorValue);
+				lcd->setCursor(7, 0);
+				sprintf(buffer, "H:%d %%", sensorData.sensorValue);
 				lcd->print(buffer);
 
 			}
 			else {
 				lcd->setCursor(0, 1);
-				lcd->print("CO2: ");
-				lcd->setCursor(4, 1);
-				sprintf(buffer, "%d", sensorData.sensorValue);
+				co2_level = sensorData.sensorValue;
+				sprintf(buffer, "CO2:%d ppm", sensorData.sensorValue);
+				lcd->print(buffer);
+				lcd->setCursor(12, 1);
+				sprintf(buffer, "%d", co2_target);
 				lcd->print(buffer);
 			}
 		}
 		if (xQueueThatContainsData == ISRQueue) {
-			xQueueReceive(xQueueThatContainsData, &Co2cnter, 0);
-			lcd->setCursor(10, 1);
-			sprintf(buffer, "%d", Co2cnter);
-			lcd->print(buffer);
+
+			if(xQueueReceive(xQueueThatContainsData, &isr_val, 0) == pdPASS){
+				vTaskDelay(10);
+				xQueueReset(ISRQueue);
+				if(isr_val == 0){
+					edit_state = !edit_state;
+				}else if(edit_state){
+					co2_target += isr_val;
+				}
+			};
+
+		}
+
+		if(co2_level < co2_target){
+			relay.write(1);
+		}else{
+			relay.write(0);
 		}
 	}
 	vTaskDelay(xBlockTime);
@@ -390,7 +419,7 @@ int main(void) {
 	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
 	Chip_PININT_SetPinModeEdge(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
 	Chip_PININT_EnableIntLow(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
-	//Chip_PININT_DisableIntHigh(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
+	Chip_PININT_EnableIntHigh(LPC_GPIO_PIN_INT, PININTCH(0));
 
 	//NVIC_SetPriority(PIN_INT0_IRQn, );
 	//NVIC_SetPriority(PIN_INT1_IRQn, );

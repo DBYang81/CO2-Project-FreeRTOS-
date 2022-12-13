@@ -1341,3 +1341,813 @@ Invalid thread id: 1
 java.lang.Exception: Invalid thread id: 1
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+!SESSION 2022-12-13 17:21:28.395 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_FI
+Framework arguments:  -keyring /Users/DBY/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/DBY/.eclipse_keyring
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-13 17:21:37.607
+!MESSAGE Recreating part support. No part support available.
+!SESSION 2022-12-13 17:32:11.729 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_FI
+Framework arguments:  -keyring /Users/DBY/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/DBY/.eclipse_keyring
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-13 17:32:24.966
+!MESSAGE Recreating part support. No part support available.
+
+!ENTRY com.crt.log 1 0 2022-12-13 17:51:52.057
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 17:51:52.060
+!MESSAGE RedlinkServer telnet session connected on port 3025->62100 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 17:51:57.259
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 17:51:58.484
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62101, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 17:51:59.497
+!MESSAGE Telnet session connected on port 3330->62105 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 17:54:20.685
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 17:54:20.690
+!MESSAGE Request for monitor: '121^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 17:54:20.690
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xf1ac 8
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:02:26.292
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:02:27.296
+!MESSAGE RedlinkServer telnet session connected on port 3025->62356 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:02:33.640
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:02:34.622
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62360, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:02:35.632
+!MESSAGE Telnet session connected on port 3330->62364 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:05:28.357
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:05:28.359
+!MESSAGE Request for monitor: '121^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:05:28.359
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xf1ac 8
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:10:25.340
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:10:26.349
+!MESSAGE RedlinkServer telnet session connected on port 3025->62597 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:10:32.846
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:10:33.875
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62601, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:10:34.886
+!MESSAGE Telnet session connected on port 3330->62607 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:09.276
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@66a026ac): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:09.276
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:09.278
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@7e049341): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:09.278
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:09.279
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@19764f6b): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:09.279
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.291
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@3648d2fe): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.291
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.295
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@32d515ee): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.295
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.298
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6811166e): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.298
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.304
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@3398f4aa): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.304
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.306
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@2978ed52): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.306
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.308
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@493a3c75): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.308
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.310
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@32fe8bc3): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.310
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:12:10.316
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@3df7114d): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:12:10.316
+!MESSAGE Connection is shut down
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:12:27.437
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:12:28.041
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:12:29.044
+!MESSAGE RedlinkServer telnet session connected on port 3025->62649 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:12:29.629
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62650, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:12:30.639
+!MESSAGE Telnet session connected on port 3330->62654 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:13:28.689
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:13:28.691
+!MESSAGE Request for monitor: '110^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:13:28.691
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xf1cc 8
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:13:46.723
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:13:47.729
+!MESSAGE RedlinkServer telnet session connected on port 3025->62689 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:13:54.169
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:13:55.164
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62696, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:13:56.219
+!MESSAGE Telnet session connected on port 3330->62700 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:30.424
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@55f6c008): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:30.424
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:30.426
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@4ee85490): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:30.426
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:30.428
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6cf8b81): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:30.428
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:30.429
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@15a32ed1): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:30.429
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:30.430
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@19e3a421): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:30.430
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.442
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@7ecd3fbd): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.442
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.444
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@5c9d6352): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.444
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.445
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@9133752): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.445
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.448
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@398106ed): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.448
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.449
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@eb1657c): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.449
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.450
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@1e886a5f): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.450
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.451
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@454a0779): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.451
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.452
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@347b3b42): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.452
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.454
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@1141a9f0): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.454
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.455
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@76a5fece): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.455
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.456
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@61276164): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.456
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:22:31.456
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@c6be729): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:22:31.456
+!MESSAGE Connection is shut down
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:22:37.017
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:22:37.832
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:22:38.839
+!MESSAGE RedlinkServer telnet session connected on port 3025->62903 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:22:39.427
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62904, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:22:40.438
+!MESSAGE Telnet session connected on port 3330->62908 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:23:24.039
+!MESSAGE Request for monitor: '185^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:23:24.039
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xfeaf00e8 32
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:23:31.128
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:23:32.133
+!MESSAGE RedlinkServer telnet session connected on port 3025->62942 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:23:39.185
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:23:40.178
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=62946, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:23:41.188
+!MESSAGE Telnet session connected on port 3330->62950 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:25:55.458
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:25:55.460
+!MESSAGE Request for monitor: '110^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:25:55.460
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xf1cc 8
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:26:15.604
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:26:16.611
+!MESSAGE RedlinkServer telnet session connected on port 3025->63023 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:26:23.745
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:26:24.770
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63029, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:26:25.782
+!MESSAGE Telnet session connected on port 3330->63033 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:30:12.897
+!MESSAGE Request for monitor: '170^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:30:12.897
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xfeaf00e8 32
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:30:23.403
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:30:24.407
+!MESSAGE RedlinkServer telnet session connected on port 3025->63147 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:30:31.518
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:30:32.496
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63149, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:30:33.508
+!MESSAGE Telnet session connected on port 3330->63155 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:31:37.228
+!MESSAGE Request for monitor: '111^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:31:37.229
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xf1bc 8
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:32:18.130
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:32:19.136
+!MESSAGE RedlinkServer telnet session connected on port 3025->63192 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:32:25.398
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:32:26.465
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63198, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:32:27.476
+!MESSAGE Telnet session connected on port 3330->63202 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:36:15.689
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:36:16.693
+!MESSAGE RedlinkServer telnet session connected on port 3025->63310 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:36:22.647
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:36:23.720
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63318, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:36:24.776
+!MESSAGE Telnet session connected on port 3330->63322 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:37:32.984
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:37:32.986
+!MESSAGE Request for monitor: '139^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:37:32.986
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xf1b8 8
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:37:43.662
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:37:44.682
+!MESSAGE RedlinkServer telnet session connected on port 3025->63352 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:37:51.129
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:37:52.086
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63357, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:37:53.096
+!MESSAGE Telnet session connected on port 3330->63363 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:22.164
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.MemoryReader$1@6255ec2d): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:38:22.164
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:33.741
+!MESSAGE Request for monitor: 'NOTHING_BEING_DEBUGGED' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:33.741
+!MESSAGE Request for monitor: 'NOTHING_BEING_DEBUGGED' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:33.742
+!MESSAGE Request for monitor: 'NOTHING_BEING_DEBUGGED' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:33.743
+!MESSAGE Request for monitor: 'NOTHING_BEING_DEBUGGED' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:33.743
+!MESSAGE Request for monitor: 'NOTHING_BEING_DEBUGGED' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:38:33.744
+!MESSAGE Request for monitor: 'NOTHING_BEING_DEBUGGED' resulted in a rejected execution exception.
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:38:41.191
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:38:42.196
+!MESSAGE RedlinkServer telnet session connected on port 3025->63392 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:38:48.046
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:38:49.118
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63394, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:38:50.128
+!MESSAGE Telnet session connected on port 3330->63398 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:26.438
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@4cc85df3): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:26.438
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:26.440
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@49299fb7): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:26.440
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:26.440
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@3b3d870e): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:26.441
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:26.442
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@763aae4c): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:26.442
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.453
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@73eb531b): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.453
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.456
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@1eee310e): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.456
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.459
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@37b4ca43): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.459
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.462
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@4e0c8142): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.462
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.464
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@2105afcc): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.464
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.465
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@30729f7d): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.465
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.466
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@474cf41e): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.466
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.467
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@4063fa9c): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.467
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.467
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@7ebb6b4f): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.467
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.468
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@4a603a55): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.468
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.469
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6a2cdb03): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.469
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:39:27.470
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@35446bc0): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:39:27.470
+!MESSAGE Connection is shut down
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:39:32.714
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:39:33.296
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:39:34.300
+!MESSAGE RedlinkServer telnet session connected on port 3025->63424 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:39:34.868
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63425, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:39:35.873
+!MESSAGE Telnet session connected on port 3330->63431 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 2 0 2022-12-13 18:39:36.477
+!MESSAGE Unknown SWO data source. Fallback to HID.
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:40:25.573
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:25.583
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@ec221bb): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:25.583
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:25.584
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@32429292): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:25.584
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:25.585
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@2d92b298): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:25.585
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:25.586
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@363de984): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:25.586
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:25.587
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@b5c1371): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:25.587
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:26.194
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@52f4ba57): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:26.195
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:26.197
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@7cb88c79): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:26.197
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:26.201
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6168214e): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:26.201
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:26.202
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@3d39fa7c): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:26.202
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:26.203
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@29833314): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:26.203
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:40:26.204
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@5b1bc642): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:40:26.204
+!MESSAGE Connection is shut down
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:40:31.971
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:40:32.517
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:40:33.523
+!MESSAGE RedlinkServer telnet session connected on port 3025->63454 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:40:34.099
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63455, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:40:35.107
+!MESSAGE Telnet session connected on port 3330->63459 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:41:25.375
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.384
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@79a19baa): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.384
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.385
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@18328c9f): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.385
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.386
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6d3b28f8): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.386
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.387
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6887056d): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.387
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.388
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@4b0838d): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.388
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.996
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@8eab1f0): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.996
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.997
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@1ce22ed3): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.997
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.998
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@1540a725): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.998
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.999
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@34017fbb): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.999
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:25.999
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@11fcf509): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:25.999
+!MESSAGE Connection is shut down
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:41:26.000
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.mcuxpresso.tad.common.model.readers.VariableReader$1@6ae97d08): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Connection is shut down' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2022-12-13 18:41:26.000
+!MESSAGE Connection is shut down
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:41:30.626
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:41:31.099
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 18:41:32.104
+!MESSAGE RedlinkServer telnet session connected on port 3025->63487 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 18:41:32.687
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=63488, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 18:41:33.697
+!MESSAGE Telnet session connected on port 3330->63492 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-12-13 18:42:05.409
+!MESSAGE Request for monitor: '172^error,msg="Invalid thread id: 1"' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 18:42:05.409
+!MESSAGE Failed to execute MI command:
+-data-read-memory-bytes 0xfeaf00e8 32
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
