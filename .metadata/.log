@@ -1,0 +1,220 @@
+!SESSION 2022-12-12 23:52:52.778 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_FI
+Framework arguments:  -keyring /Users/DBY/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos -keyring /Users/DBY/.eclipse_keyring
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-12 23:53:01.412
+!MESSAGE Recreating part support. No part support available.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2022-12-12 23:53:18.732
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.3.1/artifacts.xml.xz.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:459)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCacheFromFile(CacheManager.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.getLocalFile(XZedSimpleArtifactRepositoryFactory.java:65)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:89)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:42)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:131)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:125)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.load(CompositeArtifactRepository.java:496)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:177)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.<init>(CompositeArtifactRepository.java:99)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepositoryFactory.load(CompositeArtifactRepositoryFactory.java:120)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicRefreshRepository(AbstractRepositoryManager.java:205)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.refreshRepository(ArtifactRepositoryManager.java:136)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.equinox.p2.transport.ecf 4 1002 2022-12-12 23:53:18.732
+!MESSAGE Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.3.1/artifacts.xml.xz.
+
+!ENTRY com.crt.log 4 -1 2022-12-12 23:53:18.734
+!MESSAGE Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+!STACK 0
+java.lang.Exception: org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+	at com.crt.utils.general.Reporter.log(Reporter.java:591)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:265)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:187)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.<init>(CompositeArtifactRepository.java:99)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepositoryFactory.load(CompositeArtifactRepositoryFactory.java:120)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicRefreshRepository(AbstractRepositoryManager.java:205)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.refreshRepository(ArtifactRepositoryManager.java:136)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:168)
+	... 1 more
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.3.1/artifacts.xml.xz.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:459)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCacheFromFile(CacheManager.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.getLocalFile(XZedSimpleArtifactRepositoryFactory.java:65)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:89)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:42)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:131)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:125)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.load(CompositeArtifactRepository.java:496)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:177)
+	... 9 more
+!SESSION 2022-12-12 23:53:58.172 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_FI
+Framework arguments:  -keyring /Users/DBY/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos -keyring /Users/DBY/.eclipse_keyring
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-12 23:54:06.803
+!MESSAGE Recreating part support. No part support available.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2022-12-12 23:54:22.461
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.2.1/artifacts.xml.xz.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:459)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCacheFromFile(CacheManager.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.getLocalFile(XZedSimpleArtifactRepositoryFactory.java:65)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:89)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:42)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:131)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:125)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.load(CompositeArtifactRepository.java:496)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:177)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.<init>(CompositeArtifactRepository.java:99)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepositoryFactory.load(CompositeArtifactRepositoryFactory.java:120)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicRefreshRepository(AbstractRepositoryManager.java:205)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.refreshRepository(ArtifactRepositoryManager.java:136)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.equinox.p2.transport.ecf 4 1002 2022-12-12 23:54:22.462
+!MESSAGE Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.2.1/artifacts.xml.xz.
+
+!ENTRY com.crt.log 4 -1 2022-12-12 23:54:22.465
+!MESSAGE Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+!STACK 0
+java.lang.Exception: org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+	at com.crt.utils.general.Reporter.log(Reporter.java:591)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:265)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:187)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.<init>(CompositeArtifactRepository.java:99)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepositoryFactory.load(CompositeArtifactRepositoryFactory.java:120)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicRefreshRepository(AbstractRepositoryManager.java:205)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.refreshRepository(ArtifactRepositoryManager.java:136)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:168)
+	... 1 more
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.2.1/artifacts.xml.xz.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:459)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCacheFromFile(CacheManager.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.getLocalFile(XZedSimpleArtifactRepositoryFactory.java:65)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:89)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:42)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:131)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:125)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.load(CompositeArtifactRepository.java:496)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:177)
+	... 9 more
+!SESSION 2022-12-12 23:56:16.817 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_FI
+Framework arguments:  -keyring /Users/DBY/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos -keyring /Users/DBY/.eclipse_keyring
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-12 23:56:25.525
+!MESSAGE Recreating part support. No part support available.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2022-12-12 23:56:46.970
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.8.3/artifacts.xml.xz.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:459)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCacheFromFile(CacheManager.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.getLocalFile(XZedSimpleArtifactRepositoryFactory.java:65)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:89)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:42)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:131)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:125)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.load(CompositeArtifactRepository.java:496)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:177)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.<init>(CompositeArtifactRepository.java:99)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepositoryFactory.load(CompositeArtifactRepositoryFactory.java:120)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicRefreshRepository(AbstractRepositoryManager.java:205)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.refreshRepository(ArtifactRepositoryManager.java:136)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.equinox.p2.transport.ecf 4 1002 2022-12-12 23:56:46.970
+!MESSAGE Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.8.3/artifacts.xml.xz.
+
+!ENTRY com.crt.log 4 -1 2022-12-12 23:56:46.972
+!MESSAGE Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+!STACK 0
+java.lang.Exception: org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+	at com.crt.utils.general.Reporter.log(Reporter.java:591)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:265)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at https://mcuxpresso.nxp.com/eclipse/sdk.
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:187)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.<init>(CompositeArtifactRepository.java:99)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepositoryFactory.load(CompositeArtifactRepositoryFactory.java:120)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicRefreshRepository(AbstractRepositoryManager.java:205)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.refreshRepository(ArtifactRepositoryManager.java:136)
+	at com.nxp.mcuxpresso.core.datamodels.ui.jobs.RefreshSDKRepoJob.run(RefreshSDKRepoJob.java:168)
+	... 1 more
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: Error while reading from repository: https://mcuxpresso.nxp.com/eclipse/sdk/2.8.3/artifacts.xml.xz.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:459)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCacheFromFile(CacheManager.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.getLocalFile(XZedSimpleArtifactRepositoryFactory.java:65)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:89)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.XZedSimpleArtifactRepositoryFactory.load(XZedSimpleArtifactRepositoryFactory.java:42)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.factoryLoad(ArtifactRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:787)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:685)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:131)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:125)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.load(CompositeArtifactRepository.java:496)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.addChild(CompositeArtifactRepository.java:177)
+	... 9 more
+
+!ENTRY org.eclipse.core.jobs 4 2 2022-12-12 23:56:47.281
+!MESSAGE An internal error occurred during: "Update Job".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdateScheduler$1.run(AutomaticUpdateScheduler.java:68)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
