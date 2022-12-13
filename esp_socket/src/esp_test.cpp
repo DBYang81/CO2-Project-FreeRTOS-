@@ -141,7 +141,7 @@ void task1(void* params)
 */
 
 /* Temp&humidity sensor reading by modus - high priority */
-static void vTempHumidity(void* pvParameters) {
+static void vSensorReadTask(void* pvParameters) {
 	TickType_t xLastWakeTime;
 	BaseType_t xStatus;
 	const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
@@ -157,8 +157,9 @@ static void vTempHumidity(void* pvParameters) {
 	ModbusRegister RH(&node3, 256, true);
 
 	DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
-	relay.write(100);
+	relay.write(1);
 
+	//CO2 Value reading
 	xLastWakeTime = xTaskGetTickCount();
 	ModbusMaster node4(240);
 	node4.begin(9600); // all nodes must operate at the same speed!
@@ -168,7 +169,7 @@ static void vTempHumidity(void* pvParameters) {
 
 	for (;; )
 	{
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
+		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
 		//xSemaphoreTake(xMutex, portMAX_DELAY);
 		Data CO2Value = { CO2.read(),CO2Sensor };
 		vTaskDelay(50);
@@ -353,8 +354,7 @@ int main(void) {
 	xQueueAddToSet(sensorQueue, xQueueSet);
 	xQueueAddToSet(ISRQueue, xQueueSet);
 	xQueueAddToSet(xSemaphore, xQueueSet);
-
-
+	vQueueAddToRegistry(sensorQueue, "sensorQ");
 
 	heap_monitor_setup();
 
@@ -413,7 +413,7 @@ int main(void) {
 		(TaskHandle_t*)NULL);
 
 	//Create task for reading temperature and humidity sensors value
-	xTaskCreate(vTempHumidity, "tempHumidityTask",
+	xTaskCreate(vSensorReadTask, "sensorReadTask",
 		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
 		(TaskHandle_t*)NULL);
 
