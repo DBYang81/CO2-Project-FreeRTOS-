@@ -157,7 +157,7 @@ static void vTempHumidity(void* pvParameters) {
 	ModbusRegister RH(&node3, 256, true);
 
 	DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
-	relay.write(100);
+	relay.write(0);
 
 	xLastWakeTime = xTaskGetTickCount();
 	ModbusMaster node4(240);
@@ -168,14 +168,14 @@ static void vTempHumidity(void* pvParameters) {
 
 	for (;; )
 	{
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
+		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(10));
 		//xSemaphoreTake(xMutex, portMAX_DELAY);
 		Data CO2Value = { CO2.read(),CO2Sensor };
-		vTaskDelay(50);
-		Data TEValue = { TE.read(),temperatureSensor };
-		vTaskDelay(50);
-		Data RHValue = { RH.read(),humiditySensor };
-		vTaskDelay(50);
+		vTaskDelay(5);
+		Data TEValue = { TE.read() / 10,temperatureSensor };
+		vTaskDelay(5);
+		Data RHValue = { RH.read() / 10,humiditySensor };
+		vTaskDelay(5);
 		//xSemaphoreGive(xMutex);
 		xStatus = xQueueSendToBack(sensorQueue, &TEValue, xTicksToWait);
 		if (xStatus != pdPASS)
@@ -245,9 +245,18 @@ static void vLcdDisplay(void* pvParameters) {
 	QueueHandle_t xQueueThatContainsData;
 	int Co2cnter = 0;
 	char buffer[50];
+	int count = 0;
 	while (1) {
+		count++;
+		if (count > 30) {
+			lcd->clear();
+			count = 0;
+		}
 		xQueueThatContainsData = (QueueHandle_t)xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
-
+		lcd->setCursor(14, 0);
+		DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
+		sprintf(buffer, "R%d", relay.read());
+		lcd->print(buffer);
 		if (xQueueThatContainsData == sensorQueue) {
 			xQueueReceive(xQueueThatContainsData, &sensorData, 0);
 			// set the cursor to column 0, line 1
