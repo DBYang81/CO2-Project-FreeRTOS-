@@ -1,0 +1,6 @@
+"Task Aware Debugger for GDB" version 11.6.1 (202207200623)
+(c) 2016-2022 NXP Semiconductors, Inc.
+==================================
+19:46:23.528 INFO: [ZephyrRTOS] .config file could not be read 
+19:46:23.528 INFO: [TadModel] DSF session ID 27 has started.
+19:46:27.820 INFO: [TadModel] DSF session ID 27 has ended.

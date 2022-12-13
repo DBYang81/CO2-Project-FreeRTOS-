@@ -25,6 +25,8 @@
 #define QUEUE_LENGTH2 10
 #define BINARY_SEMAPHORE_LENGTH 1
 #define COMBINE_LENGTH (QUEUE_LENGTH1 + QUEUE_LENGTH2 + BINARY_SEMAPHORE_LENGTH)
+#define EEPROM_ADDRESS 0x00000100
+
 
 typedef enum {
 	temperatureSensor,
@@ -241,24 +243,25 @@ static void vLcdDisplay(void* pvParameters) {
 	// configure display geometry
 	lcd->begin(16, 2);
 
-	const TickType_t xBlockTime = pdMS_TO_TICKS(100);
+	const TickType_t xBlockTime = pdMS_TO_TICKS(10);
 	Data sensorData;
 	QueueHandle_t xQueueThatContainsData;
 
 	int isr_val;
 	bool edit_state = false;
-	int co2_target = 500;
+	uint8_t *ptr;
+	int co2_target;
+	vTaskSuspendAll();
+	Chip_EEPROM_Read(EEPROM_ADDRESS, ptr, sizeof(uint32_t));
+	xTaskResumeAll();
+	co2_target = ptr[0] + (ptr[1] << 8) + (ptr[2] << 16) + (ptr[3] << 24);
 	int co2_level = co2_target;
 
 	int counter = 0;
 	char buffer[50];
+
 	while (1) {
 		counter++;
-		if(counter > 30){
-			lcd->clear();
-			counter = 0;
-		}
-
 		lcd->setCursor(14, 0);
 		DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
 		sprintf(buffer, "R%d", relay.read());
@@ -302,15 +305,22 @@ static void vLcdDisplay(void* pvParameters) {
 					edit_state = !edit_state;
 				}else if(edit_state){
 					co2_target += isr_val;
+					vTaskSuspendAll();
+					Chip_EEPROM_Write(EEPROM_ADDRESS, &co2_target, sizeof(uint32_t));
+					xTaskResumeAll();
 				}
 			};
 
 		}
-
 		if(co2_level < co2_target){
 			relay.write(1);
 		}else{
 			relay.write(0);
+		}
+
+		if(counter > 30){
+			lcd->clear();
+			counter = 0;
 		}
 	}
 	vTaskDelay(xBlockTime);
@@ -386,6 +396,9 @@ int main(void) {
 	vQueueAddToRegistry(sensorQueue, "sensorQ");
 
 	heap_monitor_setup();
+//	SysTick_Config(SystemCoreClock / TICKRATE_HZ); //not know if needed
+	Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_EEPROM);
+	Chip_SYSCTL_PeriphReset(RESET_EEPROM);
 
 	// initialize RIT (= enable clocking etc.)
 	//Chip_RIT_Init(LPC_RITIMER);
