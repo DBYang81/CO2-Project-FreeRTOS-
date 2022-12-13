@@ -41,6 +41,44 @@ QueueHandle_t xSemaphore;
 
 // TODO: insert other definitions and declarations here
 
+//ISR for rotary encoder turn (siga only)
+extern "C" {
+void PIN_INT0_IRQHandler(void)
+{
+	portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
+
+	int inc = 1;
+	int dec = -inc;
+
+	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(0));
+
+	if(Chip_GPIO_GetPinState(LPC_GPIO, 0, 6)) {
+		xQueueSendFromISR(ISRQueue, inc, &xHigherPriorityTaskWoken);
+	}
+	else {
+		xQueueSendFromISR(ISRQueue, dec, &xHigherPriorityTaskWoken);
+	}
+
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+}
+}
+
+//ISR for rotary encoder button
+extern "C" {
+void PIN_INT1_IRQHandler(void)
+{
+	portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
+
+	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
+
+	int val = 0;
+
+	xQueueSendFromISR(xISRQueue, val, &xHigherPriorityTaskWoken);
+
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+}
+}
+
 /* The following is required if runtime statistics are to be collected
  * Copy the code to the source file where other you initialize hardware */
 extern "C" {
@@ -77,21 +115,6 @@ void task1(void* params)
 	DigitalIoPin sw_a3(0, 5, DigitalIoPin::pullup, true);
 	DigitalIoPin sw_a4(0, 6, DigitalIoPin::pullup, true);
 	DigitalIoPin sw_a5(0, 7, DigitalIoPin::pullup, true);
-
-	DigitalIoPin* rs = new DigitalIoPin(0, 29, DigitalIoPin::output);
-	DigitalIoPin* en = new DigitalIoPin(0, 9, DigitalIoPin::output);
-	DigitalIoPin* d4 = new DigitalIoPin(0, 10, DigitalIoPin::output);
-	DigitalIoPin* d5 = new DigitalIoPin(0, 16, DigitalIoPin::output);
-	DigitalIoPin* d6 = new DigitalIoPin(1, 3, DigitalIoPin::output);
-	DigitalIoPin* d7 = new DigitalIoPin(0, 0, DigitalIoPin::output);
-	LiquidCrystal* lcd = new LiquidCrystal(rs, en, d4, d5, d6, d7);
-	// configure display geometry
-	lcd->begin(16, 2);
-	// set the cursor to column 0, line 1
-	// (note: line 1 is the second row, since counting begins with 0):
-	lcd->setCursor(0, 0);
-	// Print a message to the LCD.
-	lcd->print("MQTT_FreeRTOS");
 
 
 	while (true) {
@@ -175,6 +198,45 @@ static void vC02Detected(void* pvParameters) {
 
 /* LCD display thread - medium priority */
 static void vLcdDisplay(void* pvParameters) {
+	DigitalIoPin* rs = new DigitalIoPin(0, 29, DigitalIoPin::output);
+	DigitalIoPin* en = new DigitalIoPin(0, 9, DigitalIoPin::output);
+	DigitalIoPin* d4 = new DigitalIoPin(0, 10, DigitalIoPin::output);
+	DigitalIoPin* d5 = new DigitalIoPin(0, 16, DigitalIoPin::output);
+	DigitalIoPin* d6 = new DigitalIoPin(1, 3, DigitalIoPin::output);
+	DigitalIoPin* d7 = new DigitalIoPin(0, 0, DigitalIoPin::output);
+	LiquidCrystal* lcd = new LiquidCrystal(rs, en, d4, d5, d6, d7);
+	// configure display geometry
+	lcd->begin(16, 2);
+
+
+	const TickType_t xBlockTime = pdMS_To_TICK(100);
+	Data sensorDate;
+	QueueHandle_t xQueueThatContainsData;
+
+	while(1){
+		xQueueThatContainsData = (QueueHandle_t) xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
+
+		if(xQueueThatContainsData == sensorQueue){
+			xQueueReceive(xQueueThatContainsData, &sensorData, 0);
+			// set the cursor to column 0, line 1
+			// (note: line 1 is the second row, since counting begins with 0):
+			lcd->setCursor(0, 0);
+			if(sensorData.sensor == temperatureSensor){
+				lcd->print("Temp: ");
+				lcd->print(sensorData.sensorValue);
+				lcd->setCursor(0, 9);
+			}else if(sensorData.sensor == humiditySensor){
+				lcd->print("Humi: ");
+				lcd->print(sensorData.sensorValue);
+				lcd->setCursor(1, 0);
+			}else{
+				lcd->print("CO2: ");
+				lcd->print(sensorData.sensorValue);
+			}
+		}
+		vTaskDelay(xBlockTime);
+	}
+
 }
 
 /* Uart output thread - low priority */
@@ -224,6 +286,41 @@ int main(void) {
 	// The level must be equal or lower than the maximum priority specified in FreeRTOS config
 	// Note that in a Cortex-M3 a higher number indicates lower interrupt priority
 	//NVIC_SetPriority( RITIMER_IRQn, configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY + 1 );
+	
+	/* ISR SETUP START */
+	//rotary encoder pin setup
+	DigitalIoPin sw_a2(1, 8, DigitalIoPin::pullup, true); //button
+	DigitalIoPin sw_a3(0, 5, DigitalIoPin::pullup, true); //siga
+	DigitalIoPin sw_a4(0, 6, DigitalIoPin::pullup, true); //sigb
+
+	/* Initialize PININT driver */
+	Chip_PININT_Init(LPC_GPIO_PIN_INT);
+
+	/* Enable PININT clock */
+	Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_PININT);
+
+	/* Reset the PININT block */
+	Chip_SYSCTL_PeriphReset(RESET_PININT);
+
+	/* Configure interrupt channel for the GPIO pin in INMUX block */
+	Chip_INMUX_PinIntSel(0, 0, 5);
+	Chip_INMUX_PinIntSel(1, 1, 8);
+
+	/* Configure channel interrupt as edge sensitive and falling edge interrupt */
+	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
+	Chip_PININT_SetPinModeEdge(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
+	Chip_PININT_EnableIntLow(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
+	//Chip_PININT_DisableIntHigh(LPC_GPIO_PIN_INT, PININTCH(1) | PININTCH(0));
+
+	//NVIC_SetPriority(PIN_INT0_IRQn, );
+	//NVIC_SetPriority(PIN_INT1_IRQn, );
+
+	/* Enable interrupt in the NVIC */
+	NVIC_ClearPendingIRQ(PIN_INT0_IRQn);
+	NVIC_ClearPendingIRQ(PIN_INT1_IRQn);
+	NVIC_EnableIRQ(PIN_INT0_IRQn);
+	NVIC_EnableIRQ(PIN_INT1_IRQn);
+	/* ISR SETUP END */
 
 	xTaskCreate(task1, "test",
 		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
