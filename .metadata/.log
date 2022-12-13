@@ -853,3 +853,491 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/DBY/.
 
 !ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-13 12:42:34.394
 !MESSAGE Recreating part support. No part support available.
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:35:00.466
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:35:00.621
+!MESSAGE RedlinkServer telnet session connected on port 3025->56425 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:35:05.846
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:35:05.877
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:35:14.540
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:35:15.676
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56434, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:35:16.702
+!MESSAGE Telnet session connected on port 3330->56440 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:36:37.534
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:36:38.541
+!MESSAGE RedlinkServer telnet session connected on port 3025->56476 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:36:48.612
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:36:49.655
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56481, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:36:50.666
+!MESSAGE Telnet session connected on port 3330->56485 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:37:52.374
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:37:53.380
+!MESSAGE RedlinkServer telnet session connected on port 3025->56514 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:38:02.764
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:38:03.932
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56520, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:38:04.939
+!MESSAGE Telnet session connected on port 3330->56524 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 13:40:42.898
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:41:04.014
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:41:05.021
+!MESSAGE RedlinkServer telnet session connected on port 3025->56599 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:41:12.190
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:41:13.397
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56605, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:41:14.410
+!MESSAGE Telnet session connected on port 3330->56611 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 13:43:39.117
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:43:42.110
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:43:43.117
+!MESSAGE RedlinkServer telnet session connected on port 3025->56670 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:43:51.745
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:43:52.922
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56675, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:43:53.937
+!MESSAGE Telnet session connected on port 3330->56679 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:47:05.258
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:47:06.266
+!MESSAGE RedlinkServer telnet session connected on port 3025->56759 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:47:14.934
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:47:15.947
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56760, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:47:17.013
+!MESSAGE Telnet session connected on port 3330->56764 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 13:49:46.724
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:49:50.883
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:49:51.886
+!MESSAGE RedlinkServer telnet session connected on port 3025->56830 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 13:50:00.540
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 13:50:01.678
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=56833, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 13:50:02.697
+!MESSAGE Telnet session connected on port 3330->56837 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 13:53:32.847
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 14:15:35.579
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 14:15:36.589
+!MESSAGE RedlinkServer telnet session connected on port 3025->57448 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 14:52:57.047
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 14:52:58.216
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58085, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 14:52:59.233
+!MESSAGE Telnet session connected on port 3330->58089 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 14:54:03.902
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 14:54:04.909
+!MESSAGE RedlinkServer telnet session connected on port 3025->58119 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 14:54:12.813
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 14:54:13.843
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58125, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 14:54:14.853
+!MESSAGE Telnet session connected on port 3330->58129 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 14:56:25.580
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 4 2022-12-13 14:56:27.124
+!MESSAGE NullPointerException while trying to calculated source lookup path. This can be ignored if it occurs while terminating a debug session. See Bug 500988.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.gdb.launching.GdbSourceLookupDirector.collectSubstitutionsPaths(GdbSourceLookupDirector.java:102)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbSourceLookupDirector.collectSubstitutionsPaths(GdbSourceLookupDirector.java:146)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbSourceLookupDirector.getSubstitutionsPaths(GdbSourceLookupDirector.java:72)
+	at org.eclipse.cdt.dsf.gdb.service.GDBSourceLookup.getSubstitutionsPaths(GDBSourceLookup.java:124)
+	at org.eclipse.cdt.dsf.gdb.service.GDBSourceLookup.sourceContainersChanged(GDBSourceLookup.java:139)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbSourceLookupParticipant.sourceContainersChangedOnDispatchThread(GdbSourceLookupParticipant.java:120)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbSourceLookupParticipant$1.run(GdbSourceLookupParticipant.java:85)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 14:56:34.042
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 14:56:34.825
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 14:56:35.832
+!MESSAGE RedlinkServer telnet session connected on port 3025->58158 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 14:56:36.420
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58161, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 14:56:37.432
+!MESSAGE Telnet session connected on port 3330->58165 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 14:58:09.598
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:00:46.688
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:00:47.693
+!MESSAGE RedlinkServer telnet session connected on port 3025->58233 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:00:56.027
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:00:57.041
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58236, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:00:58.050
+!MESSAGE Telnet session connected on port 3330->58240 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:03:54.541
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:03:55.544
+!MESSAGE RedlinkServer telnet session connected on port 3025->58293 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:04:05.137
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:04:06.190
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58300, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:04:07.202
+!MESSAGE Telnet session connected on port 3330->58307 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 15:05:50.210
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:16:46.280
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:16:47.284
+!MESSAGE RedlinkServer telnet session connected on port 3025->58495 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:16:56.608
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:16:57.746
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58499, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:16:58.756
+!MESSAGE Telnet session connected on port 3330->58503 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:18:34.916
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:18:35.922
+!MESSAGE RedlinkServer telnet session connected on port 3025->58561 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:18:41.686
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:18:42.730
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58564, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:18:43.743
+!MESSAGE Telnet session connected on port 3330->58568 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 15:19:27.296
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:20:50.029
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:20:51.037
+!MESSAGE RedlinkServer telnet session connected on port 3025->58600 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:20:57.726
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:20:58.650
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58601, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:20:59.660
+!MESSAGE Telnet session connected on port 3330->58605 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 15:21:48.849
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:23:26.371
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:23:27.378
+!MESSAGE RedlinkServer telnet session connected on port 3025->58657 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:23:34.631
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:23:35.683
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58658, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:23:36.691
+!MESSAGE Telnet session connected on port 3330->58664 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:24:39.966
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:24:40.972
+!MESSAGE RedlinkServer telnet session connected on port 3025->58682 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:24:47.893
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:24:48.843
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58683, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:24:49.855
+!MESSAGE Telnet session connected on port 3330->58687 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:26:10.567
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:26:11.064
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:26:12.072
+!MESSAGE RedlinkServer telnet session connected on port 3025->58709 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:26:12.651
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58710, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:26:13.661
+!MESSAGE Telnet session connected on port 3330->58714 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:36:09.090
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:36:10.095
+!MESSAGE RedlinkServer telnet session connected on port 3025->58890 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:37:05.329
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:37:06.417
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58901, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:37:07.426
+!MESSAGE Telnet session connected on port 3330->58905 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:37:53.366
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:37:54.368
+!MESSAGE RedlinkServer telnet session connected on port 3025->58919 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:38:01.399
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:38:02.460
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58924, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:38:03.468
+!MESSAGE Telnet session connected on port 3330->58928 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 15:38:32.651
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:38:38.093
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:38:38.823
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:38:39.828
+!MESSAGE RedlinkServer telnet session connected on port 3025->58948 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:38:40.403
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58949, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:38:41.412
+!MESSAGE Telnet session connected on port 3330->58953 @ 127.0.0.1
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:39:18.217
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:39:19.224
+!MESSAGE RedlinkServer telnet session connected on port 3025->58968 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.core.debug.support.linkserver 1 0 2022-12-13 15:39:25.979
+!MESSAGE cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.w3.org/2001/XInclude":include}'. One of '{include, parameters, script}' is expected.
+
+
+!ENTRY com.crt.log 1 0 2022-12-13 15:39:26.963
+!MESSAGE Starting GDB server [ /Applications/MCUXpressoIDE_11.6.1_8255/ide/plugins/com.nxp.mcuxpresso.tools.bin.macosx_11.6.1.202210030617/binaries//crt_emu_cm_redlink, --server, :10989, -msg-port=58971, -g, -mi, -2, -pLPC1549, -vendor=NXP, -vc, --connectscript=LPC15RunBootRomConnect.scp, --resetscript=LPC15RunBootRomReset.scp, --reset=, -ProbeHandle=1, -CoreIndex=0, --flash-hashing, --flash-driver, LPC15xx_256K.cfx, -x, /Users/DBY/Metro_SemesterV-VI/ARM-FREERTOS/project/mqtt_freertos/esp_socket/Debug, --telnet, 3330 ]
+
+!ENTRY com.nxp.mcuxpresso.core.debug 1 0 2022-12-13 15:39:27.974
+!MESSAGE Telnet session connected on port 3330->58975 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2022-12-13 15:40:34.851
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 25
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1013)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:842)
