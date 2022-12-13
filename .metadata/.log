@@ -843,3 +843,13 @@ Caused by: java.net.UnknownHostException: mcuxpresso.nxp.com
 	at org.eclipse.ecf.provider.filetransfer.httpclient45.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:248)
 	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:71)
 	... 1 more
+!SESSION 2022-12-13 12:42:25.988 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_FI
+Framework arguments:  -keyring /Users/DBY/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/DBY/.eclipse_keyring
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2022-12-13 12:42:34.394
+!MESSAGE Recreating part support. No part support available.

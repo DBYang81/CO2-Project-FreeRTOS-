@@ -18,6 +18,7 @@
 #include "ModbusRegister.h"
 #include "DigitalIoPin.h"
 #include "LiquidCrystal.h"
+#include <string>
 
 #define QUEUE_LENGTH1 10
 #define QUEUE_LENGTH2 10
@@ -53,10 +54,10 @@ void PIN_INT0_IRQHandler(void)
 	Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(0));
 
 	if(Chip_GPIO_GetPinState(LPC_GPIO, 0, 6)) {
-		xQueueSendFromISR(ISRQueue, inc, &xHigherPriorityTaskWoken);
+		xQueueSendFromISR(ISRQueue, (void*) &inc, &xHigherPriorityTaskWoken);
 	}
 	else {
-		xQueueSendFromISR(ISRQueue, dec, &xHigherPriorityTaskWoken);
+		xQueueSendFromISR(ISRQueue, (void*) &dec, &xHigherPriorityTaskWoken);
 	}
 
 	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
@@ -73,7 +74,7 @@ void PIN_INT1_IRQHandler(void)
 
 	int val = 0;
 
-	xQueueSendFromISR(xISRQueue, val, &xHigherPriorityTaskWoken);
+	xQueueSendFromISR(ISRQueue, (void*) &val, &xHigherPriorityTaskWoken);
 
 	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
 }
@@ -97,6 +98,7 @@ static void idle_delay()
 	vTaskDelay(1);
 }
 
+/*
 void task1(void* params)
 {
 	(void)params;
@@ -132,6 +134,8 @@ void task1(void* params)
 
 	}
 }
+
+*/
 
 /* Temp&humidity sensor reading by modus - high priority */
 static void vTempHumidity(void* pvParameters) {
@@ -212,6 +216,7 @@ static void vLcdDisplay(void* pvParameters) {
 	const TickType_t xBlockTime = pdMS_To_TICK(100);
 	Data sensorDate;
 	QueueHandle_t xQueueThatContainsData;
+	int Co2cnter = 0;
 
 	while(1){
 		xQueueThatContainsData = (QueueHandle_t) xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
@@ -223,20 +228,27 @@ static void vLcdDisplay(void* pvParameters) {
 			lcd->setCursor(0, 0);
 			if(sensorData.sensor == temperatureSensor){
 				lcd->print("Temp: ");
-				lcd->print(sensorData.sensorValue);
 				lcd->setCursor(0, 9);
+				lcd->print(sensorData.sensorValue);
+
 			}else if(sensorData.sensor == humiditySensor){
+				lcd->setCursor(0, 13);
 				lcd->print("Humi: ");
 				lcd->print(sensorData.sensorValue);
 				lcd->setCursor(1, 0);
 			}else{
 				lcd->print("CO2: ");
+				lcd->setCursor(1, 6);
 				lcd->print(sensorData.sensorValue);
 			}
 		}
-		vTaskDelay(xBlockTime);
+		if(xQueueThatContainsData == ISRQueue){
+		   xQueueReceive(xQueueThatContainsData, &Co2cnter, 0);
+		   lcd->setCursor(1, 10);
+		   lcd->print(std::to_string(Co2cnter));
+		}
 	}
-
+	vTaskDelay(xBlockTime);
 }
 
 /* Uart output thread - low priority */
@@ -322,9 +334,9 @@ int main(void) {
 	NVIC_EnableIRQ(PIN_INT1_IRQn);
 	/* ISR SETUP END */
 
-	xTaskCreate(task1, "test",
-		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
-		(TaskHandle_t*)NULL);
+//	xTaskCreate(task1, "test",
+//		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+//		(TaskHandle_t*)NULL);
 
 	//Create task for reading temperature and humidity sensors value
 	xTaskCreate(vTempHumidity, "tempHumidityTask",
