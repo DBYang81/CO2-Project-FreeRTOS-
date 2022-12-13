@@ -78,21 +78,6 @@ void task1(void* params)
 	DigitalIoPin sw_a4(0, 6, DigitalIoPin::pullup, true);
 	DigitalIoPin sw_a5(0, 7, DigitalIoPin::pullup, true);
 
-	DigitalIoPin* rs = new DigitalIoPin(0, 29, DigitalIoPin::output);
-	DigitalIoPin* en = new DigitalIoPin(0, 9, DigitalIoPin::output);
-	DigitalIoPin* d4 = new DigitalIoPin(0, 10, DigitalIoPin::output);
-	DigitalIoPin* d5 = new DigitalIoPin(0, 16, DigitalIoPin::output);
-	DigitalIoPin* d6 = new DigitalIoPin(1, 3, DigitalIoPin::output);
-	DigitalIoPin* d7 = new DigitalIoPin(0, 0, DigitalIoPin::output);
-	LiquidCrystal* lcd = new LiquidCrystal(rs, en, d4, d5, d6, d7);
-	// configure display geometry
-	lcd->begin(16, 2);
-	// set the cursor to column 0, line 1
-	// (note: line 1 is the second row, since counting begins with 0):
-	lcd->setCursor(0, 0);
-	// Print a message to the LCD.
-	lcd->print("MQTT_FreeRTOS");
-
 
 	while (true) {
 		float rh;
@@ -180,6 +165,45 @@ static void vC02Detected(void* pvParameters) {
 
 /* LCD display thread - medium priority */
 static void vLcdDisplay(void* pvParameters) {
+	DigitalIoPin* rs = new DigitalIoPin(0, 29, DigitalIoPin::output);
+	DigitalIoPin* en = new DigitalIoPin(0, 9, DigitalIoPin::output);
+	DigitalIoPin* d4 = new DigitalIoPin(0, 10, DigitalIoPin::output);
+	DigitalIoPin* d5 = new DigitalIoPin(0, 16, DigitalIoPin::output);
+	DigitalIoPin* d6 = new DigitalIoPin(1, 3, DigitalIoPin::output);
+	DigitalIoPin* d7 = new DigitalIoPin(0, 0, DigitalIoPin::output);
+	LiquidCrystal* lcd = new LiquidCrystal(rs, en, d4, d5, d6, d7);
+	// configure display geometry
+	lcd->begin(16, 2);
+
+
+	const TickType_t xBlockTime = pdMS_To_TICK(100);
+	Data sensorDate;
+	QueueHandle_t xQueueThatContainsData;
+
+	while(1){
+		xQueueThatContainsData = (QueueHandle_t) xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
+
+		if(xQueueThatContainsData == sensorQueue){
+			xQueueReceive(xQueueThatContainsData, &sensorData, 0);
+			// set the cursor to column 0, line 1
+			// (note: line 1 is the second row, since counting begins with 0):
+			lcd->setCursor(0, 0);
+			if(sensorData.sensor == temperatureSensor){
+				lcd->print("Temp: ");
+				lcd->print(sensorData.sensorValue);
+				lcd->setCursor(0, 9);
+			}else if(sensorData.sensor == humiditySensor){
+				lcd->print("Humi: ");
+				lcd->print(sensorData.sensorValue);
+				lcd->setCursor(1, 0);
+			}else{
+				lcd->print("CO2: ");
+				lcd->print(sensorData.sensorValue);
+			}
+		}
+		vTaskDelay(xBlockTime);
+	}
+
 }
 
 /* Uart output thread - low priority */
