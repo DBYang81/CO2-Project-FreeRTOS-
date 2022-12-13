@@ -121,33 +121,61 @@ static void vTempHumidity(void* pvParameters) {
 	node3.begin(9600); // all nodes must operate at the same speed!
 	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
 	ModbusRegister TE(&node3, 257, true);
-	TE.read() / 10;
 
 	//Humidity sensor
 	ModbusMaster node3(241); // Create modbus object that connects to slave id 241 (HMP60)
 	node3.begin(9600); // all nodes must operate at the same speed!
 	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
 	ModbusRegister RH(&node3, 256, true);
-	RH.read() / 10;
+
+	//prepare for sending sensor values
+	Data sensorValues[2];
+
+	//send values
 	for (;; )
 	{
-		xStatus = xQueueSendToBack(sensorQueue, { TE.read() / 10,temperatureSensor }, xTicksToWait);
+		vTaskDelayUntil(pdMS_TO_TICKS(100));
+		sensorValues = {
+				{TE.read() / 10,temperatureSensor },
+				{RH.read() / 10,humiditySensor    }
+		};
+		xStatus = xQueueSendToBack(sensorQueue, sensorValues[1], xTicksToWait);
 		if (xStatus != pdPASS)
 		{
-			vPrintString("Could not send to the queue.\r\n");
+			vPrintString("Temperature sensor could not send to the queue.\r\n");
 		}
-	}
+		xStatus = xQueueSendToBack(sensorQueue, sensorValues[2], xTicksToWait);
+		if (xStatus != pdPASS)
+		{
+			vPrintString("Humidity sensor could not send to the queue.\r\n");
+		}
 
-}
+	}
 }
 
 /* C02 sensor reading by modus controlled by relay - high priority*/
 static void vC02Detected(void* pvParameters) {
+
+	BaseType_t xStatus;
+	const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
+
 	ModbusMaster node3(240); // Create modbus object that connects to slave id 241 (HMP60)
 	node3.begin(9600); // all nodes must operate at the same speed!
 	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
 	ModbusRegister CO2(&node3, 256, true);
-	CO2.read();
+	Data sensorValue;
+	for (;; )
+	{
+		vTaskDelayUntil(pdMS_TO_TICKS(100));
+		sensorValue = {
+			   {CO2.read(),CO2Sensor }
+		};
+		xStatus = xQueueSendToBack(sensorQueue, sensorValue, xTicksToWait);
+		if (xStatus != pdPASS)
+		{
+			vPrintString("Temperature sensor could not send to the queue.\r\n");
+		}
+	}
 }
 
 /* LCD display thread - medium priority */
@@ -204,6 +232,16 @@ int main(void) {
 
 	xTaskCreate(task1, "test",
 		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+		(TaskHandle_t*)NULL);
+
+	//Create task for reading temperature and humidity sensors value
+	xTaskCreate(vTempHumidity, "tempHumidityTask",
+		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+		(TaskHandle_t*)NULL);
+
+	//Create task for reading CO2 sensor calue
+	xTaskCreate(vC02Detected, "CO2Task",
+		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 2UL),
 		(TaskHandle_t*)NULL);
 
 	vStartSimpleMQTTDemo();
