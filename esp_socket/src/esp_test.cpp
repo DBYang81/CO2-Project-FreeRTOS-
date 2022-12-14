@@ -61,12 +61,9 @@ void vTimerCallbackReset( TimerHandle_t xTimer ) {
 	}
 	if (reset_count < 0) {
 		xTimerStop(manual_reset_timer, portMAX_DELAY);
-		reset_count = 2;
+		//reset_count = 2;
 		//relay_count = 0;
-		//NVIC_SystemReset();
-		//Data reset = {800, CO2Sensor};
-		//vTaskDelay(5);
-		//xQueueSendToBack(sensorQueue, &reset, portMAX_DELAY);
+		NVIC_SystemReset();
 	}
 }
 
@@ -226,11 +223,11 @@ static void vSensorReadTask(void* pvParameters) {
 		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(10));
 		//xSemaphoreTake(xMutex, portMAX_DELAY);
 		Data CO2Value = { CO2.read(),CO2Sensor };
-		vTaskDelay(5);
+		vTaskDelay(50);
 		Data TEValue = { TE.read() / 10, temperatureSensor };
-		vTaskDelay(5);
+		vTaskDelay(50);
 		Data RHValue = { RH.read() / 10, humiditySensor };
-		vTaskDelay(5);
+		vTaskDelay(50);
 		//xSemaphoreGive(xMutex);
 		xStatus = xQueueSendToBack(sensorQueue, &TEValue, xTicksToWait);
 		if (xStatus != pdPASS)
@@ -312,13 +309,14 @@ static void vLcdDisplay(void* pvParameters) {
 	int manual_relay_count = 0;
 	bool started = false;
 
+	DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
+
 	int counter = 0;
 	char buffer[50];
 
 	while (1) {
 		counter++;
 		lcd->setCursor(13, 0);
-		DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
 		if (manual_relay) {
 			sprintf(buffer, "R:%d", relay_count);
 		}
@@ -359,7 +357,7 @@ static void vLcdDisplay(void* pvParameters) {
 		if (xQueueThatContainsData == ISRQueue) {
 			//receive value from isr queue
 			if(xQueueReceive(xQueueThatContainsData, &isr_val, 0) == pdPASS){
-				//"filtering" wait a bit and discard all interrupts in queue
+				//"filtering" multiple isrs from single turn/button press: wait a bit and discard all interrupts in queue
 				vTaskDelay(100);
 				xQueueReset(ISRQueue);
 				//value from isr is 0: button press
@@ -376,9 +374,9 @@ static void vLcdDisplay(void* pvParameters) {
 						manual_relay_count++;
 					}
 					//start timer for button hold for reset functionality
-					//xTimerStart(manual_reset_timer, 100);
+					//xTimerStart(manual_reset_timer, portMAX_DELAY);
 				}
-				//value from isr is 1 or -1: rotary enccoder
+				//value from isr is 1 or -1: rotary encoder
 				else {
 					//add value co2 target
 					co2_target += (isr_val * val_mult);
@@ -510,28 +508,28 @@ int main(void) {
 	vQueueAddToRegistry(sensorQueue, "sensorQ");
 
 	manual_relay_timer = xTimerCreate("manual_relay_timer",
-			pdMS_TO_TICKS(1000),
-			pdTRUE,
-			(void*) 0,
-			vTimerCallbackRelay);
+						 pdMS_TO_TICKS(1000),
+						 pdTRUE,
+						 (void*) 0,
+						 vTimerCallbackRelay);
 
 	manual_reset_timer = xTimerCreate("manual_reset_timer",
-				pdMS_TO_TICKS(1000),
-				pdTRUE,
-				(void*) 0,
-				vTimerCallbackReset);
+					     pdMS_TO_TICKS(1000),
+					     pdTRUE,
+					     (void*) 0,
+					     vTimerCallbackReset);
 
 	relay_60s_limit = xTimerCreate("relay_60s_timer",
-				pdMS_TO_TICKS(60000),
-				pdFALSE,
-				(void*) 0,
-				vTimerCallback60s);
+					  pdMS_TO_TICKS(60000),
+					  pdFALSE,
+					  (void*) 0,
+					  vTimerCallback60s);
 
 	relay_3s_on_timer = xTimerCreate("relay_3s_timer",
-				pdMS_TO_TICKS(2000),
-				pdFALSE,
-				(void*) 0,
-				vTimerCallback3s);
+						pdMS_TO_TICKS(1000),
+						pdFALSE,
+						(void*) 0,
+						vTimerCallback3s);
 
 	heap_monitor_setup();
 //	SysTick_Config(SystemCoreClock / TICKRATE_HZ); //not know if needed
