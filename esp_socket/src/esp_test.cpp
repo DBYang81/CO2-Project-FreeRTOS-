@@ -11,6 +11,7 @@
 // TODO: insert other include files here
 #include "FreeRTOS.h"
 #include "task.h"
+#include "timers.h"
 #include "semphr.h"
 #include "heap_lock_monitor.h"
 #include "retarget_uart.h"
@@ -45,6 +46,35 @@ QueueHandle_t xSemaphore;
 
 SemaphoreHandle_t xMutex;
 
+TimerHandle_t manual_reset_timer;
+int reset_count = 15;
+
+void vTimerCallbackReset( TimerHandle_t xTimer ) {
+	reset_count--;
+	if (!Chip_GPIO_GetPinState(LPC_GPIO, 1, 8)) {
+		xTimerStop(manual_reset_timer, portMAX_DELAY);
+		reset_count = 15;
+	}
+	if (reset_count < 0) {
+		xTimerStop(manual_reset_timer, portMAX_DELAY);
+		reset_count = 15;
+		NVIC_SystemReset();
+	}
+}
+
+TimerHandle_t manual_relay_timer;
+bool manual_relay = false;
+int relay_count = 9;
+
+void vTimerCallbackRelay( TimerHandle_t xTimer ) {
+	relay_count--;
+	if (relay_count < 0) {
+		manual_relay = false;
+		xTimerStop(manual_relay_timer, portMAX_DELAY);
+		relay_count = 9;
+	}
+}
+
 // TODO: insert other definitions and declarations here
 
 //ISR for rotary encoder turn (siga only)
@@ -57,6 +87,8 @@ extern "C" {
 		int dec = -inc;
 
 		Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(0));
+
+		//NVIC_DisableIRQ(PIN_INT0_IRQn);
 
 		if (Chip_GPIO_GetPinState(LPC_GPIO, 0, 6)) {
 			xQueueSendFromISR(ISRQueue, (void*)&inc, &xHigherPriorityTaskWoken);
@@ -248,23 +280,30 @@ static void vLcdDisplay(void* pvParameters) {
 	QueueHandle_t xQueueThatContainsData;
 
 	int isr_val;
-	bool edit_state = false;
-	uint8_t *ptr;
-	int co2_target;
-	vTaskSuspendAll();
-	Chip_EEPROM_Read(EEPROM_ADDRESS, ptr, sizeof(uint32_t));
-	xTaskResumeAll();
-	co2_target = ptr[0] + (ptr[1] << 8) + (ptr[2] << 16) + (ptr[3] << 24);
+	//uint8_t *ptr;
+	int co2_target = 600;
+	//vTaskSuspendAll();
+	//Chip_EEPROM_Read(EEPROM_ADDRESS, ptr, sizeof(uint32_t));
+	//xTaskResumeAll();
+	//co2_target = ptr[0] + (ptr[1] << 8) + (ptr[2] << 16) + (ptr[3] << 24);
 	int co2_level = co2_target;
+	int val_mult = 20;
+	//bool manual_relay = false;
+	int manual_relay_count = 0;
 
 	int counter = 0;
 	char buffer[50];
 
 	while (1) {
 		counter++;
-		lcd->setCursor(14, 0);
+		lcd->setCursor(13, 0);
 		DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
-		sprintf(buffer, "R%d", relay.read());
+		if (manual_relay) {
+			sprintf(buffer, "R:%d", relay_count);
+		}
+		else {
+			sprintf(buffer, "R:%d", relay.read());
+		}
 		lcd->print(buffer);
 
 		xQueueThatContainsData = (QueueHandle_t)xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
@@ -276,58 +315,80 @@ static void vLcdDisplay(void* pvParameters) {
 
 			if (sensorData.sensor == temperatureSensor) {
 				lcd->setCursor(0, 0);
-				sprintf(buffer, "T:%d C", sensorData.sensorValue);
+				snprintf(buffer, 6, "T:%dC      ", sensorData.sensorValue);
 				lcd->print(buffer);
 
 			}
 			else if (sensorData.sensor == humiditySensor) {
-				lcd->setCursor(7, 0);
-				sprintf(buffer, "H:%d %%", sensorData.sensorValue);
+				lcd->setCursor(6, 0);
+				snprintf(buffer, 7, "H:%d%%      ", sensorData.sensorValue);
 				lcd->print(buffer);
 
 			}
 			else {
 				lcd->setCursor(0, 1);
 				co2_level = sensorData.sensorValue;
-				sprintf(buffer, "CO2:%d ppm", sensorData.sensorValue);
+				snprintf(buffer, 17, "CO2:%d|%dppm         ", sensorData.sensorValue, co2_target);
 				lcd->print(buffer);
-				lcd->setCursor(12, 1);
-				sprintf(buffer, "%d", co2_target);
-				lcd->print(buffer);
+				//lcd->setCursor(12, 1);
+				//sprintf(buffer, " %d", co2_target);
+				//lcd->print(buffer);
 			}
 		}
 		if (xQueueThatContainsData == ISRQueue) {
 
 			if(xQueueReceive(xQueueThatContainsData, &isr_val, 0) == pdPASS){
-				vTaskDelay(10);
+				vTaskDelay(100);
 				xQueueReset(ISRQueue);
 				if(isr_val == 0){
-					edit_state = !edit_state;
-				}else if(edit_state){
-					co2_target += isr_val;
-					vTaskSuspendAll();
-					Chip_EEPROM_Write(EEPROM_ADDRESS, &co2_target, sizeof(uint32_t));
-					xTaskResumeAll();
+					if (val_mult == 20) {
+						val_mult = 1;
+					}
+					else {
+						val_mult = 20;
+					}
+					if (!manual_relay and !relay.read()) {
+						manual_relay_count++;
+					}
+					xTimerStart(manual_reset_timer, 100);
+				}
+				else {
+				   co2_target += (isr_val * val_mult);
+				   if (co2_target < 0) {
+					   co2_target = 0;
+				   }
+				   manual_relay_count = 0;
+					//vTaskSuspendAll();
+					//Chip_EEPROM_Write(EEPROM_ADDRESS, &co2_target, sizeof(uint32_t));
+					//xTaskResumeAll();
 				}
 			};
+			//NVIC_EnableIRQ(PIN_INT0_IRQn);
 
 		}
-		if(co2_level < co2_target){
+		if (manual_relay_count > 2) {
+			manual_relay = true;
+			manual_relay_count = 0;
+			relay_count = 9;
+			xTimerStart(manual_relay_timer, 100);
+		}
+
+		if((co2_level < co2_target) or manual_relay){
 			relay.write(1);
 		}else{
 			relay.write(0);
 		}
 
-		if(counter > 30){
-			lcd->clear();
-			counter = 0;
-		}
+		//if(counter > 30){
+		//	lcd->clear();
+		//	counter = 0;
+		//}
 	}
 	vTaskDelay(xBlockTime);
 }
 
 /* Uart output thread - low priority */
-static void vUARTTask(void* pvParameters) {
+/*static void vUARTTask(void* pvParameters) {
 
 	Data sensorData;
 	//	int count = 0;
@@ -356,7 +417,7 @@ static void vUARTTask(void* pvParameters) {
 		}
 		vTaskDelay(configTICK_RATE_HZ / 10);
 	}
-}
+}*/
 
 
 ///* Rotary encoder thread - GPIO interrupt*/
@@ -395,6 +456,18 @@ int main(void) {
 	xQueueAddToSet(xSemaphore, xQueueSet);
 	vQueueAddToRegistry(sensorQueue, "sensorQ");
 
+	manual_relay_timer = xTimerCreate("manual_relay_timer",
+			pdMS_TO_TICKS(1000),
+			pdTRUE,
+			(void*) 0,
+			vTimerCallbackRelay);
+
+	manual_reset_timer = xTimerCreate("manual_reset_timer",
+				pdMS_TO_TICKS(200),
+				pdFALSE,
+				(void*) 0,
+				vTimerCallbackReset);
+
 	heap_monitor_setup();
 //	SysTick_Config(SystemCoreClock / TICKRATE_HZ); //not know if needed
 	Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_EEPROM);
@@ -413,6 +486,7 @@ int main(void) {
 	DigitalIoPin sw_a3(0, 5, DigitalIoPin::pullup, true); //siga
 	DigitalIoPin sw_a4(0, 6, DigitalIoPin::pullup, true); //sigb
 
+	retarget_init();
 
 
 	/* Initialize PININT driver */
@@ -445,9 +519,9 @@ int main(void) {
 	/* ISR SETUP END */
 
 
-	xTaskCreate(vUARTTask, "Debug",
-		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
-		(TaskHandle_t*)NULL);
+	//xTaskCreate(vUARTTask, "Debug",
+	//	configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+	//	(TaskHandle_t*)NULL);
 
 
 	xTaskCreate(vLcdDisplay, "LcdDisplay",
