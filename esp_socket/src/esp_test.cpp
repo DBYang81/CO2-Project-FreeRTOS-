@@ -47,24 +47,28 @@ QueueHandle_t xSemaphore;
 SemaphoreHandle_t xMutex;
 
 TimerHandle_t manual_reset_timer;
-int reset_count = 15;
+int reset_count = 2;
+
+TimerHandle_t manual_relay_timer;
+bool manual_relay = false;
+int relay_count = 9;
 
 void vTimerCallbackReset( TimerHandle_t xTimer ) {
 	reset_count--;
 	if (!Chip_GPIO_GetPinState(LPC_GPIO, 1, 8)) {
 		xTimerStop(manual_reset_timer, portMAX_DELAY);
-		reset_count = 15;
+		reset_count = 2;
 	}
 	if (reset_count < 0) {
 		xTimerStop(manual_reset_timer, portMAX_DELAY);
-		reset_count = 15;
-		NVIC_SystemReset();
+		reset_count = 2;
+		//relay_count = 0;
+		//NVIC_SystemReset();
+		//Data reset = {800, CO2Sensor};
+		//vTaskDelay(5);
+		//xQueueSendToBack(sensorQueue, &reset, portMAX_DELAY);
 	}
 }
-
-TimerHandle_t manual_relay_timer;
-bool manual_relay = false;
-int relay_count = 9;
 
 void vTimerCallbackRelay( TimerHandle_t xTimer ) {
 	relay_count--;
@@ -73,6 +77,22 @@ void vTimerCallbackRelay( TimerHandle_t xTimer ) {
 		xTimerStop(manual_relay_timer, portMAX_DELAY);
 		relay_count = 9;
 	}
+}
+
+TimerHandle_t relay_60s_limit;
+TimerHandle_t relay_3s_on_timer;
+//bool relay_60s_enable = true;
+bool relay_enable = true;
+
+void vTimerCallback60s( TimerHandle_t xTimer ) {
+	relay_enable = true;
+	//xTimerStart(relay_3s_on_timer, portMAX_DELAY);
+	//relay_60s_enable = true;
+}
+
+void vTimerCallback3s( TimerHandle_t xTimer ) {
+	relay_enable = false;
+	xTimerStart(relay_60s_limit, portMAX_DELAY);
 }
 
 // TODO: insert other definitions and declarations here
@@ -191,7 +211,7 @@ static void vSensorReadTask(void* pvParameters) {
 	ModbusRegister RH(&node3, 256, true);
 
 	DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
-	relay.write(1);
+	//relay.write(1);
 
 	//CO2 Value reading
 	xLastWakeTime = xTaskGetTickCount();
@@ -281,15 +301,16 @@ static void vLcdDisplay(void* pvParameters) {
 
 	int isr_val;
 	//uint8_t *ptr;
-	int co2_target = 600;
-	//vTaskSuspendAll();
-	//Chip_EEPROM_Read(EEPROM_ADDRESS, ptr, sizeof(uint32_t));
-	//xTaskResumeAll();
+	int co2_target;// = 800;
+	vTaskSuspendAll();
+	Chip_EEPROM_Read(EEPROM_ADDRESS, (uint8_t *)&co2_target, sizeof(uint32_t));
+	xTaskResumeAll();
 	//co2_target = ptr[0] + (ptr[1] << 8) + (ptr[2] << 16) + (ptr[3] << 24);
 	int co2_level = co2_target;
 	int val_mult = 20;
 	//bool manual_relay = false;
 	int manual_relay_count = 0;
+	bool started = false;
 
 	int counter = 0;
 	char buffer[50];
@@ -336,48 +357,80 @@ static void vLcdDisplay(void* pvParameters) {
 			}
 		}
 		if (xQueueThatContainsData == ISRQueue) {
-
+			//receive value from isr queue
 			if(xQueueReceive(xQueueThatContainsData, &isr_val, 0) == pdPASS){
+				//"filtering" wait a bit and discard all interrupts in queue
 				vTaskDelay(100);
 				xQueueReset(ISRQueue);
+				//value from isr is 0: button press
 				if(isr_val == 0){
+					//toggle increase/decrease value
 					if (val_mult == 20) {
 						val_mult = 1;
 					}
 					else {
 						val_mult = 20;
 					}
-					if (!manual_relay and !relay.read()) {
+					//increment count for manual relay open functionality
+					if (!manual_relay) {// and !relay.read()) {
 						manual_relay_count++;
 					}
-					xTimerStart(manual_reset_timer, 100);
+					//start timer for button hold for reset functionality
+					//xTimerStart(manual_reset_timer, 100);
 				}
+				//value from isr is 1 or -1: rotary enccoder
 				else {
-				   co2_target += (isr_val * val_mult);
-				   if (co2_target < 0) {
-					   co2_target = 0;
-				   }
-				   manual_relay_count = 0;
-					//vTaskSuspendAll();
-					//Chip_EEPROM_Write(EEPROM_ADDRESS, &co2_target, sizeof(uint32_t));
-					//xTaskResumeAll();
+					//add value co2 target
+					co2_target += (isr_val * val_mult);
+					//lower limit
+					if (co2_target < 0) {
+						co2_target = 0;
+					}
+					//reset manual relay count
+					manual_relay_count = 0;
+					//write co2 target to eeprom
+					vTaskSuspendAll();
+					Chip_EEPROM_Write(EEPROM_ADDRESS, (uint8_t *)&co2_target, sizeof(uint32_t));
+					xTaskResumeAll();
 				}
 			};
 			//NVIC_EnableIRQ(PIN_INT0_IRQn);
 
 		}
-		if (manual_relay_count > 2) {
+
+		//3 button presses -> manual relay open
+		if ((manual_relay_count > 2) and (co2_target > co2_level)) {// and relay_enable) {
 			manual_relay = true;
 			manual_relay_count = 0;
 			relay_count = 9;
 			xTimerStart(manual_relay_timer, 100);
 		}
 
-		if((co2_level < co2_target) or manual_relay){
-			relay.write(1);
-		}else{
+		//write relay
+		if (relay_enable or manual_relay) {
+			//if measured co2 is lower than co2 target -> open valve
+			//bool started: vaoid starting the timer multiple times
+			if((co2_level < co2_target) and !started){
+				//start timer: disable relay after 3s
+				xTimerStart(relay_3s_on_timer, portMAX_DELAY);
+				//open relay
+				relay.write(1);
+				started = true;
+			}
+			//if manual relay functionality -> open valve
+			else if (manual_relay) {
+				relay.write(1);
+			}
+		}
+		//else close relay
+		else {//if (!relay_enable) {
+			relay_count = 0;
+			started = false;
 			relay.write(0);
 		}
+		//else if (co2_level > co2_target) {
+		//	relay.write(0);
+		//}
 
 		//if(counter > 30){
 		//	lcd->clear();
@@ -463,10 +516,22 @@ int main(void) {
 			vTimerCallbackRelay);
 
 	manual_reset_timer = xTimerCreate("manual_reset_timer",
-				pdMS_TO_TICKS(200),
-				pdFALSE,
+				pdMS_TO_TICKS(1000),
+				pdTRUE,
 				(void*) 0,
 				vTimerCallbackReset);
+
+	relay_60s_limit = xTimerCreate("relay_60s_timer",
+				pdMS_TO_TICKS(60000),
+				pdFALSE,
+				(void*) 0,
+				vTimerCallback60s);
+
+	relay_3s_on_timer = xTimerCreate("relay_3s_timer",
+				pdMS_TO_TICKS(2000),
+				pdFALSE,
+				(void*) 0,
+				vTimerCallback3s);
 
 	heap_monitor_setup();
 //	SysTick_Config(SystemCoreClock / TICKRATE_HZ); //not know if needed
@@ -530,7 +595,7 @@ int main(void) {
 
 	//Create task for reading temperature and humidity sensors value
 	xTaskCreate(vSensorReadTask, "sensorReadTask",
-		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+		configMINIMAL_STACK_SIZE * 5, NULL, (tskIDLE_PRIORITY + 1UL),
 		(TaskHandle_t*)NULL);
 
 	//Create task for reading CO2 sensor value
