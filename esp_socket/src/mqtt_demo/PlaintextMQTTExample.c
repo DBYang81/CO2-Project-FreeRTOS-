@@ -132,7 +132,7 @@
  * The topic name starts with the client identifier to ensure that each demo
  * interacts with a unique topic name.
  */
-#define mqttexampleTOPIC                             democonfigCLIENT_IDENTIFIER "/example/topic"
+#define mqttexampleTOPIC                             democonfigCLIENT_IDENTIFIER "channels/1955513/publish"
 
 /**
  * @brief The number of topic filters to subscribe.
@@ -364,7 +364,7 @@ static MQTTFixedBuffer_t xBuffer =
  * @brief Create the task that demonstrates the MQTT API over a plaintext TCP
  * connection.
  */
-void vStartSimpleMQTTDemo( void )
+void vStartSimpleMQTTDemo( char* string )
 {
     /* This example uses a single application task, which in turn is used to
      * connect, subscribe, publish, unsubscribe and disconnect from the MQTT
@@ -377,11 +377,12 @@ void vStartSimpleMQTTDemo( void )
      * state or call the MQTT_ProcessLoop() API function. Using an agent task
      * also enables multiple application tasks to more easily share a single
      * MQTT connection.*/
+	
     xTaskCreate( prvMQTTDemoTask,          /* Function that implements the task. */
                  "DemoTask",               /* Text name for the task - only used for debugging. */
                  democonfigDEMO_STACKSIZE, /* Size of stack (in words, not bytes) to allocate for the task. */
-                 NULL,                     /* Task parameter - not used in this case. */
-                 tskIDLE_PRIORITY,         /* Task priority, must be between 0 and configMAX_PRIORITIES - 1. */
+                 string,                     /* Task parameter - not used in this case. */
+                 1,         /* Task priority, must be between 0 and configMAX_PRIORITIES - 1. */
                  NULL );                   /* Used to pass out a handle to the created task - not used in this case. */
 }
 /*-----------------------------------------------------------*/
