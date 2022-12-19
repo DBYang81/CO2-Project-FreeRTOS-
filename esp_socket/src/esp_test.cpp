@@ -40,7 +40,29 @@ typedef struct {
 	Sensors sensor;
 }Data;
 
-static QueueHandle_t sensorQueue = NULL, ISRQueue = NULL;
+typedef enum {
+	co2,
+	relativehumidity,
+	temperature,
+	valveOpenPerc,
+	co2SetPoint
+}DataTypes;
+
+typedef struct {
+	int value;
+	DataTypes DataType;
+}mqttData;
+
+typedef struct {
+	int co2;
+	int relativehumidity;
+	int temperature;
+	int valveOpenPerc;
+	int co2SetPoint;
+}mqttStrData;
+
+
+static QueueHandle_t sensorQueue = NULL, ISRQueue = NULL, mqttQueue = NULL, strQueue = NULL;
 static QueueSetHandle_t xQueueSet;
 QueueHandle_t xSemaphore;
 
@@ -152,45 +174,6 @@ static void idle_delay()
 	vTaskDelay(1);
 }
 
-/*
-void task1(void* params)
-{
-	(void)params;
-
-	retarget_init();
-
-	ModbusMaster node3(241); // Create modbus object that connects to slave id 241 (HMP60)
-	node3.begin(9600); // all nodes must operate at the same speed!
-	node3.idle(idle_delay); // idle function is called while waiting for reply from slave
-	ModbusRegister RH(&node3, 256, true);
-
-	DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
-	relay.write(0);
-
-	DigitalIoPin sw_a2(1, 8, DigitalIoPin::pullup, true);
-	DigitalIoPin sw_a3(0, 5, DigitalIoPin::pullup, true);
-	DigitalIoPin sw_a4(0, 6, DigitalIoPin::pullup, true);
-	DigitalIoPin sw_a5(0, 7, DigitalIoPin::pullup, true);
-
-
-	while (true) {
-		float rh;
-		char buffer[32];
-
-		vTaskDelay(2000);
-
-		rh = RH.read() / 10.0;
-		snprintf(buffer, 32, "RH=%5.1f%%", rh);
-		printf("%s\n", buffer);
-		lcd->setCursor(0, 1);
-		// Print a message to the LCD.
-		lcd->print(buffer);
-
-	}
-}
-
-*/
-
 /* Temp&humidity sensor reading by modus - high priority */
 static void vSensorReadTask(void* pvParameters) {
 	TickType_t xLastWakeTime;
@@ -229,10 +212,24 @@ static void vSensorReadTask(void* pvParameters) {
 		Data RHValue = { RH.read() / 10, humiditySensor };
 		vTaskDelay(50);
 		//xSemaphoreGive(xMutex);
+		
+		mqttData Co2 = { CO2.read(),co2 };
+		vTaskDelay(5);
+		mqttData te = { TE.read() / 10,temperature };
+		vTaskDelay(5);
+		mqttData rh = { RH.read() / 10,relativehumidity };
+		vTaskDelay(5);
+		
 		xStatus = xQueueSendToBack(sensorQueue, &TEValue, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
 			printf("Temperature sensor could not send to the queue.\r\n");
+		}
+
+		xStatus = xQueueSendToBack(mqttQueue, &te, xTicksToWait);
+		if (xStatus != pdPASS)
+		{
+			printf("Temperature could not send to the queue.\r\n");
 		}
 
 		xStatus = xQueueSendToBack(sensorQueue, &RHValue, xTicksToWait);
@@ -240,45 +237,26 @@ static void vSensorReadTask(void* pvParameters) {
 		{
 			printf("Humidity sensor could not send to the queue.\r\n");
 		}
+		
+		xStatus = xQueueSendToBack(mqttQueue, &rh, xTicksToWait);
+		if (xStatus != pdPASS)
+		{
+			printf("Humidity could not send to the queue.\r\n");
+		}
+		
 		xStatus = xQueueSendToBack(sensorQueue, &CO2Value, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
 			printf("Co2 sensor could not send to the queue.\r\n");
 		}
-
-	}
-}
-
-#if 0
-/* C02 sensor reading by modus controlled by relay - high priority*/
-static void vC02Detected(void* pvParameters) {
-
-	DigitalIoPin relay(0, 27, DigitalIoPin::output); // CO2 relay
-	relay.write(10);
-
-	TickType_t xLastWakeTime;
-	BaseType_t xStatus;
-	const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
-	xLastWakeTime = xTaskGetTickCount();
-	ModbusMaster node4(240);
-	node4.begin(9600); // all nodes must operate at the same speed!
-	node4.idle(idle_delay); // idle function is called while waiting for reply from slave
-	ModbusRegister CO2(&node4, 256, true);
-
-	for (;; )
-	{
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
-		xSemaphoreTake(xMutex, portMAX_DELAY);
-		Data CO2Value = { CO2.read(),CO2Sensor };
-		xStatus = xQueueSendToBack(sensorQueue, &CO2Value, xTicksToWait);
+		
+		xStatus = xQueueSendToBack(mqttQueue, &Co2, xTicksToWait);
 		if (xStatus != pdPASS)
 		{
-			printf("Temperature sensor could not send to the queue.\r\n");
+			printf("CO2 could not send to the queue.\r\n");
 		}
-		xSemaphoreGive(xMutex);
 	}
 }
-#endif
 
 /* LCD display thread - medium priority */
 static void vLcdDisplay(void* pvParameters) {
@@ -438,50 +416,63 @@ static void vLcdDisplay(void* pvParameters) {
 	vTaskDelay(xBlockTime);
 }
 
-/* Uart output thread - low priority */
-/*static void vUARTTask(void* pvParameters) {
 
-	Data sensorData;
-	//	int count = 0;
-	//	char str[60];
-	char buff[100];
+/* WiFi and Mqtt thread */
+static void vMqttFormat(void* pvParamenters) {
+	//SemaphoreHandle_t xBinarySemaphore;
+	mqttData mD;
+	mqttStrData mSD;
 
-	retarget_init();
-
-
-	QueueHandle_t xQueueThatContainsData;
+	const TickType_t xBlockTime = pdMS_TO_TICKS(100);
+	char mqttStr[60];
+	char strBackUp[60];
 
 	while (1) {
-		//			int bytes = dbgu->read(str+count, 60-count);
-		//			if(bytes > 0){
-		//				count += bytes;
-		//				str[count] = '\0';
-		//				dbgu->write(str+count-bytes, bytes);
+		xQueueReceive(mqttQueue, &mD, 0);
 
-		xQueueThatContainsData = (QueueHandle_t)xQueueSelectFromSet(xQueueSet, portMAX_DELAY);
-		if (xQueueThatContainsData == sensorQueue) {
-			xQueueReceive(xQueueThatContainsData, &sensorData, 0);
-			if (sensorData.sensor == temperatureSensor) {
-				snprintf(buff, 100, "Temp: %d \r\n", sensorData.sensorValue);
-				printf("%s", buff);
-			}
+		if (mD.DataType == co2) {
+			mSD.co2 = mD.value;
 		}
-		vTaskDelay(configTICK_RATE_HZ / 10);
+		else if (mD.DataType == temperature) {
+			mSD.temperature = mD.value;
+		}
+		else if (mD.DataType == relativehumidity) {
+			mSD.relativehumidity = mD.value;
+		}
+		else if (mD.DataType == valveOpenPerc) {
+			mSD.valveOpenPerc = mD.value;
+		}
+		else if (mD.DataType == co2SetPoint) {
+			mSD.co2SetPoint = mD.value;
+		}
+
+		snprintf(mqttStr, 60, "field1=%d&field2=%d&field3=%d&field4=%d&field5=%d", mSD.co2, mSD.relativehumidity, mSD.temperature, mSD.valveOpenPerc, mSD.co2SetPoint);
+
+		if (mqttStr != NULL) {
+			xQueueReceive(strQueue, &strBackUp, 0);
+			xQueueSendToBack(strQueue, &mqttStr, portMAX_DELAY);
+			xSemaphoreGive(xMutex);
+		}
 	}
-}*/
+	vTaskDelay(xBlockTime);
+}
 
+static void vMqttPublish(void* pvParamenters) {
+	char publishStr[60];
+	TickType_t xLastWakeTime;
+	xLastWakeTime = xTaskGetTickCount();
 
-///* Rotary encoder thread - GPIO interrupt*/
-//static void vRotaryEncoder(void* pvParameters) {
-//}
-//
-///* WiFi and Mqtt thread */
-//static void vMqtt(void* pvParamenters) {
-//}
+	xQueueReceive(strQueue, &publishStr, 0);
+	vStartSimpleMQTTDemo(publishStr);
+
+	vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(300000));
+}
+
 
 extern "C" {
 	void vStartSimpleMQTTDemo(void); // ugly - should be in a header
 }
+
 
 int main(void) {
 #if defined (__USE_LPCOPEN)
@@ -582,10 +573,6 @@ int main(void) {
 	/* ISR SETUP END */
 
 
-	//xTaskCreate(vUARTTask, "Debug",
-	//	configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
-	//	(TaskHandle_t*)NULL);
-
 
 	xTaskCreate(vLcdDisplay, "LcdDisplay",
 		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
@@ -595,13 +582,15 @@ int main(void) {
 	xTaskCreate(vSensorReadTask, "sensorReadTask",
 		configMINIMAL_STACK_SIZE * 5, NULL, (tskIDLE_PRIORITY + 1UL),
 		(TaskHandle_t*)NULL);
+	
+	xTaskCreate(vMqttFormat, "mqttFormatTask",
+		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+		(TaskHandle_t*)NULL);
 
-	//Create task for reading CO2 sensor value
-//	xTaskCreate(vC02Detected, "CO2Task",
-//		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 2UL),
-//		(TaskHandle_t*)NULL);
+	xTaskCreate(vMqttPublish, "mqttPublishTask",
+		configMINIMAL_STACK_SIZE * 4, NULL, (tskIDLE_PRIORITY + 1UL),
+		(TaskHandle_t*)NULL);
 
-	//vStartSimpleMQTTDemo();
 
 	/* Start the scheduler */
 	vTaskStartScheduler();
